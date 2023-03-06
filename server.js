@@ -50,6 +50,26 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true })
             })
         })
 
+
+        app.put('/edit/editArticle', (req,res) => {
+            console.log(req.body)
+            db.collection('blog-items').updateOne({title: req.body.titleC, postDescription: req.body.desC, markdown: req.body.markdownC}, {
+                $set: {
+                    title: req.body.title,
+                    postDescription: req.body.des,
+                    markdown: req.body.markdown,
+                }
+            }, {
+                sort: {_id: -1},
+                upsert: false
+            })
+            .then(result => {
+                console.log('updated article')
+                res.json('article changed')
+                res.redirect('/')
+            })
+            .catch(error => console.error(error))
+        })
         
         app.post('/new-post', (req,res) => {
             console.log(req.body)

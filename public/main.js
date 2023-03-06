@@ -1,31 +1,34 @@
-// const more = [...document.querySelectorAll('.more')]
+const edit = [...document.querySelectorAll('.submit')]
+const titleC = document.querySelector('#title').value
+const desC = document.querySelector('#des').value
+const markdownC = document.querySelector('#markdown').value
+edit.forEach(x => {
+    x.addEventListener('click', editArt)
+})
+async function editArt(){
+  const input = this.parentNode.childNodes[3].childNodes[4]
+  console.log(input)
+  const title = document.getElementById('title').value
+  const des = document.getElementById('des').value
+  const markdown = document.getElementById('markdown').value
+  try{
+      const response = await fetch('/edit/editArticle', {
+          method: 'put',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            "titleC": titleC,
+            "desC": desC,
+            "markdownC": markdownC,
+            "title": title,
+            "des": des,
+            "markdown": markdown,
+          })
+        })
+      const data = await response.json()
+      console.log(data)
+      //location.reload()
 
-// more.forEach(x => {
-//     x.addEventListener('click', imLost)
-// })
-// async function imLost(){
-//     const title = this.parentNode.parentNode.childNodes[1].innerText
-//     const date = this.parentNode.parentNode.childNodes[3].innerText
-//     const des = this.parentNode.parentNode.childNodes[5].innerText
-//    //const input = this.parentNode.childNodes[5].value
-//     // console.log(title)
-//     // console.log(date)
-//     // console.log(des)
-//     try{
-//         const response = await fetch('/read', {
-//             method: 'post',
-//             headers: {'Content-Type': 'application/json'},
-//             body: JSON.stringify({
-//               'titleS': title,
-//               'dateS': date,
-//               'desS': des,
-//             })
-//           })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-
-//     }catch(err){
-//         console.log(err)
-//     }
-//  }
+  }catch(err){
+      console.log(err)
+  }
+}
