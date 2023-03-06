@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styless.css">
+    <script src="/main.js" defer></script>
+    <script src="/delete.js" defer></script>
+    <title>Sports Blog</title>
+</head>
+<body>
+    <h1> Sports Articles</h1>
+    <button><a href="/new-article">New Post</a></button>
+    <h2>Lastest Sports Stories</h2>
+    <% for(let i = 0; i<articles.length; i++) {%>
+        <div class="container">
+            <h2><%= articles[i].title %></h2>
+            <span><%= articles[i].datePosted %></span>
+            <p><%= articles[i].postDescription %></p>
+            <div>
+                <!-- href="/read-articles" -->
+                <button class="more"><a href="/read/<%= articles[i]._id %>">Read Article</a></button>
+                <button class="edit"><a href="/edit/<%= articles[i]._id %>">Edit Article</a></button>
+                <button class="delete">Delete Article</button>
+            </div>
+        </div>
+    <%}  %>
+</body>
+</html>

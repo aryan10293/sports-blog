@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styless.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit Article</h1>
+        <div>
+            <label for="title">Title</label><br>
+            <input type="text" name="title" value="<%= art.title %>" placeholder="Enter title">
+        </div>
+        <div>
+            <label for="description">Description</label><br>
+            <input type="text" name="description" value="<%= art.postDescription %>" placeholder="Enter description">
+        </div>
+        <div>
+            <label for="markdown">Markdown</label><br>
+            <textarea id="markdown" name="markdown" rows="8" cols="50"><%= art.markdown %></textarea>
+            
+        </div>
+        <div>
+            <label for="date">Date</label>
+            <input type="text" name="date" value="<%= art.datePosted %>">
+        </div>
+        <button type="submit">Submit</button>
+        <button><a href="/">Cancel</a></button>
+</body>
+</html>
